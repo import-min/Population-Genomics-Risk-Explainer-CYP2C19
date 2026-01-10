@@ -1,31 +1,33 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
-from load_data import load_allele_frequencies
+# Load data
+df = pd.read_csv("data/allele_frequencies.csv", comment="#")
 
-def plot_naive_frequency():
-    """
-    Naive visualization of allele frequency by population.
-    This plot is intentionally simplistic and easy to misinterpret.
-    """
-    df = load_allele_frequencies()
+# Sanity check
+assert "allele_frequency" in df.columns
+assert len(df) > 0
 
-    # Focus on a single variant (rs4244285, CYP2C19)
-    variant_df = df[df["variant"] == "rs4244285"]
+# Sort for nicer visualization
+df = df.sort_values("allele_frequency", ascending=True)
 
-    variant_df = variant_df.sort_values("allele_frequency", ascending=False)
+# Create output directory
+os.makedirs("figures", exist_ok=True)
 
-    plt.figure(figsize=(10, 6))
-    plt.barh(
-        variant_df["genetic_ancestry_group"],
-        variant_df["allele_frequency"]
-    )
-    plt.xlabel("Allele Frequency")
-    plt.title("Allele Frequency of CYP2C19 Variant by Population")
-    plt.tight_layout()
-    plt.show()
+# Plot
+plt.figure(figsize=(8, 4))
+plt.barh(
+    df["genetic_ancestry_group"],
+    df["allele_frequency"]
+)
 
+plt.xlabel("Allele Frequency")
+plt.title("Naive View: CYP2C19*2 Frequency by Population")
 
-if __name__ == "__main__":
-    plot_naive_frequency()
+plt.tight_layout()
+plt.savefig("figures/naive_allele_frequency.png", dpi=150)
+plt.close()
+
+print("Saved naive plot to figures/naive_allele_frequency.png")
 
