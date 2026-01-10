@@ -1,0 +1,14 @@
+# Source: Genome Aggregation Database (gnomAD v4.1.0)
+# Variant: rs4244285 (CYP2C19*2, c.681G>A)
+# Coordinates: chr10:94781859 G>A (GRCh38)
+# Data manually transcribed from gnomAD population allele frequencies
+gene,variant,genetic_ancestry_group,allele_frequency
+CYP2C19,*2,South_Asian,0.3203
+CYP2C19,*2,East_Asian,0.3036
+CYP2C19,*2,African_AfricanAmerican,0.1784
+CYP2C19,*2,European_non_Finnish,0.1462
+CYP2C19,*2,European_Finnish,0.1749
+CYP2C19,*2,Ashkenazi_Jewish,0.1324
+CYP2C19,*2,Admixed_American,0.1153
+CYP2C19,*2,Middle_Eastern,0.1090
+
