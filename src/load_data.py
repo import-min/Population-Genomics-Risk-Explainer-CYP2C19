@@ -1,4 +1,7 @@
 import pandas as pd
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 DATA_PATH = "data/allele_frequencies.csv"
 
@@ -22,7 +25,7 @@ def load_allele_frequencies(path=DATA_PATH):
 
     if not df["allele_frequency"].between(0, 1).all():
         raise ValueError("Allele frequencies must be between 0 and 1")
-
+    logging.info(f"Loaded {len(df)} rows with columns: {list(df.columns)}")
     return df
 
 
